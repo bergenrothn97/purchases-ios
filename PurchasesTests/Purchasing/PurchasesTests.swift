@@ -15,6 +15,7 @@ class PurchasesTests: XCTestCase {
         requestFetcher = MockRequestFetcher()
         systemInfo = MockSystemInfo(platformFlavor: nil, platformFlavorVersion: nil, finishTransactions: true)
         mockOperationDispatcher = MockOperationDispatcher()
+        introEligibilityCalculator = MockIntroEligibilityCalculator()
     }
 
     override func tearDown() {
@@ -181,6 +182,7 @@ class PurchasesTests: XCTestCase {
     let offeringsFactory = MockOfferingsFactory()
     let deviceCache = MockDeviceCache()
     let subscriberAttributesManager = MockSubscriberAttributesManager()
+    var introEligibilityCalculator: MockIntroEligibilityCalculator!
     let identityManager = MockUserManager(mockAppUserID: "app_user");
     var systemInfo: MockSystemInfo!
     var mockOperationDispatcher: MockOperationDispatcher!
@@ -206,7 +208,8 @@ class PurchasesTests: XCTestCase {
                               deviceCache: deviceCache,
                               identityManager: identityManager,
                               subscriberAttributesManager: subscriberAttributesManager,
-                              operationDispatcher: mockOperationDispatcher)
+                              operationDispatcher: mockOperationDispatcher,
+                              introEligibilityCalculator: introEligibilityCalculator)
         purchases!.delegate = purchasesDelegate
         Purchases.setDefaultInstance(purchases!)
     }
@@ -228,7 +231,8 @@ class PurchasesTests: XCTestCase {
                               deviceCache: deviceCache,
                               identityManager: identityManager,
                               subscriberAttributesManager: subscriberAttributesManager,
-                              operationDispatcher: mockOperationDispatcher)
+                              operationDispatcher: mockOperationDispatcher,
+                              introEligibilityCalculator: introEligibilityCalculator)
 
         purchases!.delegate = purchasesDelegate
     }
@@ -249,7 +253,8 @@ class PurchasesTests: XCTestCase {
                               deviceCache: deviceCache,
                               identityManager: identityManager,
                               subscriberAttributesManager: subscriberAttributesManager,
-                              operationDispatcher: mockOperationDispatcher)
+                              operationDispatcher: mockOperationDispatcher,
+                              introEligibilityCalculator: introEligibilityCalculator)
 
         purchases!.delegate = purchasesDelegate
         Purchases.setDefaultInstance(purchases!)

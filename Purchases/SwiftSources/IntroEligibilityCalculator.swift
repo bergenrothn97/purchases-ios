@@ -9,7 +9,7 @@
 import Foundation
 import StoreKit
 
-public class IntroEligibilityCalculator: NSObject {
+@objc(RCIntroEligibilityCalculator) public class IntroEligibilityCalculator: NSObject {
     private let productsManager: ProductsManager
     private let receiptParser: ReceiptParser
     

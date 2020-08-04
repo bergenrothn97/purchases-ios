@@ -24,6 +24,7 @@ class PurchasesSubscriberAttributesTests: XCTestCase {
     var subscriberAttributeHeight: RCSubscriberAttribute!
     var subscriberAttributeWeight: RCSubscriberAttribute!
     var mockAttributes: [String: RCSubscriberAttribute]!
+    var mockIntroEligibilityCalculator: MockIntroEligibilityCalculator!
     let systemInfo: RCSystemInfo = RCSystemInfo(platformFlavor: nil,
                                                 platformFlavorVersion: nil,
                                                 finishTransactions: true)
@@ -45,6 +46,7 @@ class PurchasesSubscriberAttributesTests: XCTestCase {
             subscriberAttributeWeight.key: subscriberAttributeWeight
         ]
         self.mockOperationDispatcher = MockOperationDispatcher()
+        self.mockIntroEligibilityCalculator = MockIntroEligibilityCalculator()
     }
 
     override func tearDown() {
@@ -70,7 +72,8 @@ class PurchasesSubscriberAttributesTests: XCTestCase {
                               deviceCache: mockDeviceCache,
                               identityManager: mockIdentityManager,
                               subscriberAttributesManager: mockSubscriberAttributesManager,
-                              operationDispatcher: mockOperationDispatcher)
+                              operationDispatcher: mockOperationDispatcher,
+                              introEligibilityCalculator: mockIntroEligibilityCalculator)
         purchases!.delegate = purchasesDelegate
         Purchases.setDefaultInstance(purchases!)
     }
